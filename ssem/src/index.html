@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ssem</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="assets/libs/nestable2/jquery.nestable.min.css" rel="stylesheet" />
+  <link href="assets/css/style.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/vendor.min.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <!-- nestable2 js-->
+  <script src="assets/libs/nestable2/jquery.nestable.min.js"></script>
+
+  <!-- Nestable init-->
+  <script src="assets/js/pages/nestable.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+      $(document).ready(function () {
+          $('.select2').select2({
+              placeholder: 'Search and select',
+              allowClear: true,
+              templateResult: formatState,
+              templateSelection: formatState
+          });
+
+          function formatState(state) {
+              if (!state.id) {
+                  return state.text;
+              }
+              var $state = $(
+                  '<span style="display: flex; align-items: center; white-space: nowrap;"><input type="checkbox" style="margin-right: 8px;"/> ' + state.text + '</span>'
+              );
+              return $state;
+          }
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+          const menuItems = document.querySelectorAll('.menu-item');
+
+          menuItems.forEach(item => {
+              item.addEventListener('click', function () {
+                  // Remove 'active' class from all menu items
+                  menuItems.forEach(el => el.classList.remove('active'));
+
+                  // Add 'active' class to the clicked menu item
+                  this.classList.add('active');
+              });
+          });
+      });
+  </script>
+  <script>
+      // Add event listener to collapse elements (Bootstrap 5+)
+      // var collapses = document.querySelectorAll('[data-bs-toggle="collapse"]');
+      // collapses.forEach(function (collapse) {
+      //     collapse.addEventListener('click', function () {
+      //         var parentLi = this.closest('.menu-item');
+      //         if (parentLi) {
+      //             parentLi.classList.toggle('active');
+      //         }
+      //     });
+      // });
+  </script>   
+  
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
